@@ -1,0 +1,16 @@
+<!--
+  SOC lab customization extending Wazuh rule 92057.
+  Validated with a harmless encoded PowerShell command.
+  A matching alert requires investigation; it does not prove malicious intent.
+-->
+<group name="soc_lab,windows,">
+  <rule id="100100" level="12">
+    <if_sid>92057</if_sid>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\powershell\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)\s-(?:enc|encodedcommand)\s</field>
+    <description>SOC Lab: PowerShell launched with an encoded command</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+  </rule>
+</group>
