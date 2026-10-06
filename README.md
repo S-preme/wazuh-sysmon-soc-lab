@@ -54,6 +54,36 @@ The rule checks the executable path and the `-enc` or `-EncodedCommand` argument
 
 This is a customization of an existing Wazuh detection, not a claim to have discovered a new technique.
 
+## Detection rule and evidence
+
+[View the custom rule](rules/encoded-powershell.xml)
+
+### Custom detection triggered
+
+The harmless encoded PowerShell test matched custom rule `100100` at level `12`.
+
+![Custom encoded PowerShell alert](screenshots/20-custom-rule-success.png)
+
+### Normal command comparison
+
+The normal command was collected and matched built-in rule `92027`, rather than the custom encoded command rule.
+
+![Normal PowerShell command comparison](screenshots/21-normal-command-comparison.png)
+
+### Final rule configuration
+
+The custom rule extends built-in rule `92057`.
+
+![Final custom rule configuration](screenshots/18-custom-powershell-rule.png)
+
+### Investigation evidence
+
+The command below exported security settings, searched for an account lockout setting, and removed the temporary file. Combined with its Wazuh agent parent process, this supported a likely benign assessment.
+
+![Security configuration check and temporary file cleanup](screenshots/14-alert-command-line-analysis.png)
+
+[View the built-in encoded PowerShell alert observed before customization](screenshots/19-builtin-encoded-powershell-alert.png)
+
 ## Validation results
 
 | Test | Observed rule | Level |
