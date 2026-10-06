@@ -2,6 +2,8 @@
 
 A SOC home lab focused on collecting Windows process telemetry, investigating PowerShell alerts, and validating a custom Wazuh rule with harmless simulations.
 
+[Detection rule](rules/encoded-powershell.xml) · [Test steps and results](docs/testing.md)
+
 ## Results
 
 - Forwarded Sysmon events from a Windows endpoint to Wazuh.
